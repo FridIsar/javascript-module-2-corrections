@@ -16,4 +16,11 @@ var car = {
 };
 
 */
-
+var mobile = {
+  brand: "redmi",
+  model: "note 9 pro",
+  ram: "8GB",
+  Memory: "128GB",
+  color: "blue",
+  price: 45000,
+};
