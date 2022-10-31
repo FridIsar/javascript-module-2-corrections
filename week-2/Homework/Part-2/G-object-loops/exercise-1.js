@@ -8,12 +8,15 @@ const studentGrades = {
   abdul: 19,
 };
 
-for (const result in studentGrades) {
-  if (studentGrades[result] > 18) {
-    console.log(`${result.toUpperCase()} - ${studentGrades[result]}`);
-  }
-}
 
-// Prints
-// TOM - 20
-// ABDUL - 19
+const grades = Object.values(studentGrades)
+const names = Object.keys(studentGrades)
+grades.forEach((grade, i) => {
+  if (grade > 18) {
+    console.log(`${names[i].toUpperCase()} - ${grade}`)
+  }
+})
+
+  // Prints
+  // TOM - 20
+  // ABDUL - 19

@@ -10,20 +10,22 @@ let person = {
   name: "Alice",
   age: 25,
   greet: function () {
-    return "Hello everybody";
+    return 'Hello everybody'
   },
   sayName: function () {
-    return this.name;
-  },
+    return `'My name is ${this.name}'`
+  }
+
+
 };
 
 /*
-  DO NOT EDIT ANYTHING BELOW THIS LINE
-  */
+DO NOT EDIT ANYTHING BELOW THIS LINE
+*/
 
 console.log(
   `Expected result: Hello everybody. Actual result: ${person.greet()}`
 );
 console.log(
-  `Expected result: 'My name is Alice'. Actual result:' My name is'${person.sayName()}`
+  `Expected result: 'My name is Alice'. Actual result: ${person.sayName()}`
 );

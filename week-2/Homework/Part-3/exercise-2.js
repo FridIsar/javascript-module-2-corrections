@@ -7,14 +7,14 @@ Define a method "makeFriend" to add a new friend to her list.
 let person = {
   name: "Alice",
   friends: ["John", "Nina"],
-  makeFriend: function () {
-    const newFriend = this.friends.push("Bob");
-  },
+  makeFriend: function (name) {
+    this.friends.push(name)
+  }
 };
 
 /*
-  DO NOT EDIT ANYTHING BELOW THIS LINE
-  */
+DO NOT EDIT ANYTHING BELOW THIS LINE
+*/
 
 person.makeFriend("Bob");
 

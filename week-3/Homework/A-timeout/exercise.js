@@ -10,11 +10,27 @@ Update your code to make the colour change every 5 seconds to something differen
 ================
 */
 
-function changeColor() {
-  const BgCOlor = document.querySelector("body");
-  const arrColor = ["blue", "red", "green", "orange"];
-  const randomNumber = arrColor[Math.floor(Math.random() * arrColor.length)];
-  BgCOlor.style.backgroundColor = randomNumber;
+//task 1
+
+setTimeout(() => {
+    document.querySelector("body").style.backgroundColor = 'purple'
+
+}, 5000)
+
+
+//task 2
+
+const changeColor = () => {
+    let bodyStyle = document.querySelector('body').style
+    let colors = ['red', 'purple', 'green', 'pink', 'blue', 'black']
+    let index = Math.round(Math.random() * 10)
+    if (index >= 0 && index <= 5) {
+        bodyStyle.backgroundColor = colors[index]
+    }
+
 }
-setTimeout(changeColor, 5000);
-setInterval(changeColor, 5000);
+
+setInterval(() => {
+    changeColor()
+}, 5000)
+

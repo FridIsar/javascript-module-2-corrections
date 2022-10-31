@@ -3,9 +3,9 @@
 */
 
 // WRITE CODE HERE
-var kitten = {
-  name: "Gilbert",
-};
+const kitten = {
+    name: "Gilbert"
+}
 
 console.log(kitten.name);
 

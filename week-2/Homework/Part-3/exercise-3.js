@@ -2,10 +2,12 @@
 A coffee machine is defined below.
 One can buy three different coffees.
 Complete the methods "insertMoney" and "getCoffee" to match the expected result.
+
 insertMoney takes an amount in parameter to add money in the coffee machine.
 getCoffee takes a coffee type in parameter and dispends the selected coffee
 only if the inserted amount is greater or equal than the price of the coffee!
 */
+
 let coffeeMachine = {
   brand: "Super Coffee",
   prices: {
@@ -15,18 +17,15 @@ let coffeeMachine = {
   },
   insertedAmount: 0,
   insertMoney: function (amount) {
-    this.insertedAmount = amount;
+    this.insertedAmount = amount
   },
   getCoffee: function (coffee) {
-    const coffeeChecker = Object.keys(this.prices).findIndex(
-      (c) => c === coffee
-    );
-    const prices = Object.values(this.prices)[coffeeChecker];
+    const price = this.prices[coffee]
 
-    if (this.insertedAmount >= prices) {
-      return `'Please take your ${coffee}'`;
+    if (this.insertedAmount >= price) {
+      return `'Please take your ${coffee}'`
     } else {
-      return `'Sorry you don't have enough money for a ${coffee}'`;
+      return `'Sorry you don't have enough money for a ${coffee}'`
     }
   },
 };
@@ -38,8 +37,7 @@ DO NOT EDIT ANYTHING BELOW THIS LINE
 coffeeMachine.insertMoney(2.4);
 console.log(
   `Expected result: 'Please take your cappuccino'. Actual result: ${coffeeMachine.getCoffee(
-    "cappuccino"
-  )}`
+    "cappuccino")}`
 );
 
 coffeeMachine.insertMoney(1.5);

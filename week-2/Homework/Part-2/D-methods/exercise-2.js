@@ -5,15 +5,13 @@ Once you fix them, run this file, it should output the correct values!
 */
 
 let person = {
-  name: "Alice",
-  age: 25,
-  currentAddress: "Glasgow",
-  changeAddress: (newAddress) => {
-    return (currentAddress = newAddress);
-  },
-  celebrateBirthday: function () {
-    return (person.age = person.age + 1);
-  },
+    name: "Alice",
+    age: 25,
+    currentAddress: "Glasgow",
+    changeAddress: function (newAddress) {
+        currentAddress = newAddress;
+    },
+    celebrateBirthday: function () {
+        this.age = this.age + 1;
+    }
 };
-console.log(person.changeAddress("Barcelona Spain"));
-console.log(person.celebrateBirthday());

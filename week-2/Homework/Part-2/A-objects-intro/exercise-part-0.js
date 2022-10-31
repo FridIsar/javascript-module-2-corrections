@@ -7,12 +7,14 @@ Try to think of as many properties as you can!
 */
 
 let laptop = {
-  brand: "MacMacBook Pro ",
-  screenSize: 13 - inch,
-  Model: 2016,
-  Ports: 3,
-  isTouchscreen: false,
-  Processor: Dual - Core - Intel - I7,
-  Memory: 16 - GB,
-  SerialNumber: C02TF23THF1R,
+  brand: "Lenovo",
+  screenSize: 13,
+  isTouchscreen: true,
 };
+
+const YunsLaptop = {
+  brand: "Apple",
+  screenSize: 13,
+  isTouchscreen: false,
+  year: 2016
+}
