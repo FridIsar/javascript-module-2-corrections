@@ -1,57 +1,62 @@
-// Part 1
+// part 1
+let blueBtn = document.querySelector("#blueBtn");
+let orangeBtn = document.querySelector("#orangeBtn");
+let greenBtn = document.querySelector("#greenBtn");
 
-//Blue button.
-let blueBtn = document.querySelector("#blueBtn").addEventListener("click", changeBlue);
-function changeBlue(){
-    document.querySelector(".Jumbotron").style.backgroundColor = "#588fbd";
-    document.querySelector("#donate").style.backgroundColor = "#ffa500";
-    document.querySelector("#vol").style.backgroundColor = "black";
-    document.querySelector("#vol").style.color = "white"
-};
 
-//Orange button
-let orangeBtn = document.querySelector("#orangeBtn").addEventListener("click", changeOrange);
-function changeOrange(){
-    document.querySelector(".Jumbotron").style.backgroundColor = "#f0ad4e";
-    document.querySelector("#donate").style.backgroundColor = "#5751fd";
-    document.querySelector("#vol").style.backgroundColor = "#31b0d5";
-    document.querySelector("#vol").style.color = "white"
-};
+let jumbotron = document.querySelector(".jumbotron");
+let donateBtn = document.querySelector(".btn.btn-primary.btn-lrg");
+let volunteerBtn = document.querySelector(".btn.btn-secondary.btn-lrg");
 
-//Green button
-let greenBtn = document.querySelector("#greenBtn").addEventListener("click", changeGreen);
-function changeGreen(){
-    document.querySelector(".Jumbotron").style.backgroundColor = "#87ca8a";
-    document.querySelector("#donate").style.backgroundColor = "black";
-    document.querySelector("#vol").style.backgroundColor = "#8c9c08";
-   
-};
+blueBtn.addEventListener("click", () => {
+    jumbotron.style.backgroundColor = '#588fbd';
+    donateBtn.style.backgroundColor = '#ffa500';
+    volunteerBtn.style.backgroundColor = 'black';
+    volunteerBtn.style.color = "white";
+})
 
-//Part 2
+orangeBtn.addEventListener("click", () => {
+    jumbotron.style.backgroundColor = '#f0ad4e';
+    donateBtn.style.backgroundColor = '#5751fd';
+    volunteerBtn.style.backgroundColor = '#31b0d5';
+    volunteerBtn.style.color = "white";
+})
 
-let submitButton = document.querySelector("form button").addEventListener("click", formSubmit);
+greenBtn.addEventListener("click", () => {
+    jumbotron.style.backgroundColor = '#87ca8a';
+    donateBtn.style.backgroundColor = 'black';
+    volunteerBtn.style.backgroundColor = '#8c9c08';
+    volunteerBtn.style.color = "black";
+})
 
-function formSubmit(){
-    event.preventDefault()
-    let emailInput = document.querySelector("#exampleInputEmail1");
-    let nameInput = document.querySelector("#example-text-input");
-    let textInput = document.querySelector("#exampleTextarea");
+// part 2
+const submitBtn = document.querySelector("button[type='submit']");
 
-    if (emailInput.value.length == 0 || emailInput.value.includes("@") == false){
-        alert("Email is not Valid");
-        document.querySelector("#exampleInputEmail1").style.backgroundColor = "red"; 
-    }if(nameInput.value.length == 0){
-        alert("Name is Empty");
-        document.querySelector("#example-text-input").style.backgroundColor = "red";
-    } if (textInput.value.length == 0){
-        alert("Text is Empty")
-        document.querySelector("#exampleTextarea").style.backgroundColor = "red"
-    }else{
-        alert ("thank you for filling out the form");
-        emailInput.value="";
-        nameInput.value="";
-        textInput.value="";
+const emailField = document.querySelector("#exampleInputEmail1");
+const nameField = document.querySelector("#example-text-input");
+const describeField = document.querySelector("#exampleTextarea");
+
+submitBtn.addEventListener("click", validate);
+
+function validate(e) {
+    if (emailField.value.length === 0 || !emailField.value.includes("@")) {
+        emailField.style.backgroundColor = 'red';
     }
+    if (nameField.value.length === 0) {
+        nameField.style.backgroundColor = 'red';
+    }
+    if (describeField.value.length === 0) {
+        describeField.style.backgroundColor = 'red';
+    }
+
+    if (emailField.value.length > 0 && nameField.value.length > 0 && describeField.value.length > 0 && emailField.value.includes("@")) {
+        alert("Thank you for filling out the form");
         
-    
+        emailField.value = " ";
+        nameField.value = " ";
+        describeField.value = " ";
+
+    }
+
+    e.preventDefault();
 }

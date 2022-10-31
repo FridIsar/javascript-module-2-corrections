@@ -3,7 +3,7 @@
 */
 
 // WRITE CODE HERE
-const kitten = {
+let kitten = {
     name: "Gilbert",
 }
 

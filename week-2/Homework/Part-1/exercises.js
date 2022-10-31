@@ -15,17 +15,11 @@
  */
 function exerciseOne(arrayOfPeople) {
   let content = document.querySelector("#content");
-  arrayOfPeople.forEach(person => {
-    // console.log(person.name)
-    // console.log(person.job)
-    const nameTitle = document.createElement('h1');
-    const jobTitle = document.createElement('h2');
-    nameTitle.textContent = person.name;
-    jobTitle.textContent = person.job;
-    content.appendChild(nameTitle);
-    content.appendChild(jobTitle);
-  })
-};
+  content.innerHTML = arrayOfPeople.map(person => `
+      <h1>${person.name}</h1>
+      <h2>${person.job}</h2>
+      `).join("")
+}
 
 /**
  *
@@ -34,16 +28,13 @@ function exerciseOne(arrayOfPeople) {
  * All of your HTML should go inside the Div tag with the id "content".
  *
  */
-function exerciseTwo(shoppingList) {
+function exerciseTwo(shopping) {
+  //Write your code in here
   let content = document.querySelector("#content");
-  const list = document.createElement("ul");
-
+  let list = document.createElement("ul");
   content.appendChild(list);
-  shoppingList.forEach(shoppingItem => {
-    const listItem = document.createElement("li");
-    listItem.textContent = shoppingItem;
-    list.appendChild(listItem);
-  });
+
+  list.innerHTML = shopping.map(product => `<li>${product}</li>`).join("")
 }
 
 /**
@@ -75,32 +66,42 @@ function exerciseTwo(shoppingList) {
 
     The end result should look something like this: https://hyf-js2-week1-makeme-ex1-demo.herokuapp.com/
 **/
+
 function exerciseThree(books) {
-  //Write your code in here
   let content = document.querySelector("#content");
-  const list = document.createElement('ul');
-  content.appendChild(list);
 
-  books.forEach(book => {
-    const listItem = document.createElement('li');
-    const paragraph = document.createElement('p');
-    const image = document.createElement("img");
-    
-    image.src = book.url;
-    paragraph.textContent = book.title + " - " + book.author;
+  let heading = document.createElement("h1");
+  heading.innerText = "Book List";
 
+  let list = document.createElement("ul");
+  list.style.listStyle = "none";
+  list.style.display = "flex";
+  list.style.justifyContent = "space-between";
+
+  content.append(heading, list);
+
+  books[0].image = "../Part-1/1.jpeg"
+  books[1].image = "../Part-1/2.jpeg"
+  books[2].image = "../Part-1/3.jpeg"
+
+  list.innerHTML = books.map((book) => {
     if (book.alreadyRead) {
-      listItem.style.color = "green";
+      return `
+      <li style="background-color: green; width: 30%">
+        <p style="text-align: center">${book.title} - ${book.author}</p> 
+        <img style="padding: 10px" src=${book.image}>
+      </li>`
     } else {
-      listItem.style.color = "red";
+      return `
+    <li style="background-color: red; width: 30%"">
+      <p style="text-align: center">${book.title} - ${book.author}</p> 
+      <img style="padding: 10px" src=${book.image}>
+    </li>`
     }
-
-    listItem.appendChild(paragraph);
-    listItem.appendChild(image);
-    list.appendChild(listItem);
-
-  });
+  }).join("");
 }
+
+
 
 //
 //
@@ -112,10 +113,18 @@ function exerciseThree(books) {
 //
 //
 
-let people = [
-  { name: "Chris", job: "Teacher" },
-  { name: "Joanna", job: "Student" },
-  { name: "Boris", job: "Prime Minister" }
+let people = [{
+    name: "Chris",
+    job: "Teacher"
+  },
+  {
+    name: "Joanna",
+    job: "Student"
+  },
+  {
+    name: "Boris",
+    job: "Prime Minister"
+  }
 ];
 
 exerciseOne(people);
@@ -124,8 +133,7 @@ let shopping = ["Milk", "Break", "Eggs", "A Dinosaur", "Cake", "Sugar", "Tea"];
 
 exerciseTwo(shopping);
 
-const books = [
-  {
+const books = [{
     title: "The Design of Everyday Things",
     author: "Don Norman",
     alreadyRead: false

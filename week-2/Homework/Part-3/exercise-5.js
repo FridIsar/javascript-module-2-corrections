@@ -39,16 +39,11 @@ var writers = [
   },
 ];
 
+
+let result = writers.map(el => console.log(`Hi, my name is ${el.firstName} ${el.lastName}. I am ${el.age} years old, and work as a ${el.occupation}.`))
+
 /*
 If you want an extra challenge, only `console.log()` the writers that are alive.
 */
-writers.forEach(function(writer) {
-  console.log(`Hi, my name is ${writer.firstName} ${writer.lastName}. I am ${writer.age} years old, and work as a ${writer.occupation}.`)
-});
-/*
-If you want an extra challenge, only `console.log()` the writers that are alive.
-*/
-writers.forEach(function(writer) {
-  if (writer.alive === true) {
-  console.log(`Hi, my name is ${writer.firstName} ${writer.lastName}. I am ${writer.age} years old, and work as a ${writer.occupation}.`)
-}});
+
+let aliveWriters = writers.filter(el => el.alive == true).map(el => console.log(`Hi, my name is ${el.firstName} ${el.lastName}. I am ${el.age} years old, and work as a ${el.occupation}.`))

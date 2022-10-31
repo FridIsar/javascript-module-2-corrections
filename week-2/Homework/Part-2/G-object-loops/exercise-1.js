@@ -3,16 +3,18 @@
 // Try to use both methods shown above to achieve this
 
 const studentGrades = {
-    tom: 20,
-    george: 17,
-    abdul: 19,
-  };
+  tom: 20,
+  george: 17,
+  abdul: 19,
+};
+
+for (let key in studentGrades) {
+
+  if (studentGrades[key] > 18) {
+    console.log(key.toUpperCase() + " - " + studentGrades[key]);
+  }  
   
-  for (const prop in studentGrades){
-      if (studentGrades[prop] > 18) {
-        console.log(`${prop.toUpperCase()} - ${studentGrades[prop]}`);
-      }
-  }
-  // Prints
-  // TOM - 20
-  // ABDUL - 19
+}
+// Prints
+// TOM - 20
+// ABDUL - 19

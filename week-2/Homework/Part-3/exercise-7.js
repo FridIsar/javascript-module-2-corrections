@@ -41,9 +41,23 @@ var product2 = {
   price: 9.99,
   stock: 2
 };
+var product3 = {
+  id: 3,
+  name: "Bread",
+  price: 2.98,
+  stock: 1
+};
+var product4 = {
+  id: 4,
+  name: "Paella",
+  price: 7.98,
+  stock: 4
+};
 
 products.push(product1);
 products.push(product2);
+products.push(product3);
+products.push(product4);
 
 var shoppingCart = {
   totalPrice: 0,
@@ -51,65 +65,58 @@ var shoppingCart = {
 };
 
 function addToShoppingCart(id) {
-  let product = products.find(product => product.id === id)
-
-  if (product) {
-    if (product.stock > 1) {
-      shoppingCart.totalPrice = shoppingCart.totalPrice + product.price
-      shoppingCart.selectedProducts.push(product)
-
-    } else {
-      alert("No more stock. Can't add to shopping cart.")
-    }
+  if (products[id - 1].stock > 0) {
+    shoppingCart.totalPrice += products[id - 1].price;
+    shoppingCart.selectedProducts.push(products[id - 1]);
   }
-
 
 }
 
 function removeFromShoppingCart(id) {
-  let product = products.find(product => product.id === id)
-  let index = shoppingCart.selectedProducts.findIndex(product => product === product)
-  shoppingCart.selectedProducts.splice(index, 1)
-  //another solution to delete the item here
-  //products.filter(product=>product.id !==id)
-  shoppingCart.totalPrice = shoppingCart.totalPrice - product.price
-
-
+  shoppingCart.totalPrice -= products[id - 1].price;
+  shoppingCart.selectedProducts = shoppingCart.selectedProducts.filter(el => el.name != products[id - 1].name);
 }
 
 function shop() {
-  shoppingCart.totalPrice = 0
-  shoppingCart.selectedProducts.forEach(product => {
-    product.stock = product.stock - 1
-  })
-  shoppingCart.selectedProducts = []
 
+  for (let i = 0; i < products.length; i++) {
+    for (let j = 0; j < shoppingCart.selectedProducts.length; j++) {
+      if (shoppingCart.selectedProducts[j].id == products[i].id) {
+        products[i].stock -= 1;
+      }
+    }
+  }
+
+  shoppingCart.totalPrice = 0;
+  shoppingCart.selectedProducts = [];
 
 }
+
+
 
 //results
 addToShoppingCart(1);
 console.log("Step 1");
 console.log("Total Price = " + shoppingCart.totalPrice);
 console.log("Number of Elements = " + shoppingCart.selectedProducts.length);
-console.log("Name of Elements = " + shoppingCart.selectedProducts.map(p=>p.name));
+console.log("Name of Elements = " + shoppingCart.selectedProducts.map(p => p.name));
 addToShoppingCart(2);
 console.log("Step 2");
 console.log("Total Price = " + shoppingCart.totalPrice);
 console.log("Number of Elements = " + shoppingCart.selectedProducts.length);
-console.log("Name of Elements = " + shoppingCart.selectedProducts.map(p=>p.name));
+console.log("Name of Elements = " + shoppingCart.selectedProducts.map(p => p.name));
 addToShoppingCart(4);
 console.log("Step 3");
 console.log("Total Price = " + shoppingCart.totalPrice);
 console.log("Number of Elements = " + shoppingCart.selectedProducts.length);
-console.log("Name of Elements = " + shoppingCart.selectedProducts.map(p=>p.name));
+console.log("Name of Elements = " + shoppingCart.selectedProducts.map(p => p.name));
 removeFromShoppingCart(2);
 console.log("Step 4");
 console.log("Total Price = " + shoppingCart.totalPrice);
 console.log("Number of Elements = " + shoppingCart.selectedProducts.length);
-console.log("Name of Elements = " + shoppingCart.selectedProducts.map(p=>p.name));
+console.log("Name of Elements = " + shoppingCart.selectedProducts.map(p => p.name));
 shop();
 console.log("Step 5");
 console.log("Total Price = " + shoppingCart.totalPrice);
 console.log("Number of Elements = " + shoppingCart.selectedProducts.length);
-console.log("Name of Elements = " + shoppingCart.selectedProducts.map(p=>p.name));
+console.log("Name of Elements = " + shoppingCart.selectedProducts.map(p => p.name));
