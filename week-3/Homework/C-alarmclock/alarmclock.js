@@ -1,44 +1,39 @@
+function setAlarm() {
+    let inputNumbers = document.getElementById("alarmSet");
+  let timeRemaining = document.getElementById("timeRemaining");
+  let initialTime = inputNumbers.value;
 
-const formatTime = (time) => {
+  inputNumbers.value = "";
 
-  if (time != 60) {
-    let minutes = Math.ceil(time / 60) - 1
-    if (minutes >= 1) {
-      let seconds = time - minutes * 60
-      munites = `0${minutes}`
-      time = `${minutes}:${seconds}`
-    } else {
-      if (time < 10) {
-        time = `00:0${time}`
-      } else {
-        time = `00:${time}`
-      }
+  function setAlarmInternal() {
+    timeRemaining.textContent = "Time Remaining: " + timeOutFunc(initialTime);
+    initialTime -= 1;
+
+    if (initialTime <= -1) {
+      clearInterval(timer);
+      playAlarm();
     }
-  } else {
-    time = `00:${time}`
   }
 
-  return time
-}
+  setAlarmInternal();
 
-
-const setAlarm = () => {
-  let time = document.querySelector("#alarmSet").value
-  const timeRemaining = document.querySelector("#timeRemaining")
-  timeRemaining.innerHTML = `Time Remaining: ${formatTime(time)}`
-  const setIntervalId = setInterval(() => {
-    if (time <= 0) {
-      playAlarm()
-      clearInterval(setIntervalId)
-    } else {
-      time = time - 1
-      timeRemaining.innerHTML = `Time Remaining: ${formatTime(time)}`
+  function timeOutFunc(time) {
+    if (time >= 60) {
+      let timeParsed = parseInt(time, 10);
+      let minutes = Math.floor(timeParsed / 60);
+      let seconds = timeParsed - minutes * 60;
+      return minutes + " : " + seconds;
     }
-
-  }, 1000)
+    if (time < 10) {
+      return "00:0" + time;
+    } else if (time <= 59 && time >= 10) {
+      return "00:" + time;
+    } else {
+      return "00:" + time;
+    }
+  }
+  let timer = setInterval(setAlarmInternal, 1000);
 }
-
-
 
 // DO NOT EDIT BELOW HERE
 

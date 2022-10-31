@@ -52,6 +52,7 @@ var shoppingCart = {
 
 function addToShoppingCart(id) {
   let product = products.find(product => product.id === id)
+
   if (product) {
     if (product.stock > 1) {
       shoppingCart.totalPrice = shoppingCart.totalPrice + product.price
@@ -67,7 +68,7 @@ function addToShoppingCart(id) {
 
 function removeFromShoppingCart(id) {
   let product = products.find(product => product.id === id)
-  let index = shoppingCart.selectedProducts.findIndex(product => product = product)
+  let index = shoppingCart.selectedProducts.findIndex(product => product === product)
   shoppingCart.selectedProducts.splice(index, 1)
   //another solution to delete the item here
   //products.filter(product=>product.id !==id)
@@ -91,24 +92,24 @@ addToShoppingCart(1);
 console.log("Step 1");
 console.log("Total Price = " + shoppingCart.totalPrice);
 console.log("Number of Elements = " + shoppingCart.selectedProducts.length);
-console.log("Name of Elements = " + shoppingCart.selectedProducts.map(p => p.name));
+console.log("Name of Elements = " + shoppingCart.selectedProducts.map(p=>p.name));
 addToShoppingCart(2);
 console.log("Step 2");
 console.log("Total Price = " + shoppingCart.totalPrice);
 console.log("Number of Elements = " + shoppingCart.selectedProducts.length);
-console.log("Name of Elements = " + shoppingCart.selectedProducts.map(p => p.name));
+console.log("Name of Elements = " + shoppingCart.selectedProducts.map(p=>p.name));
 addToShoppingCart(4);
 console.log("Step 3");
 console.log("Total Price = " + shoppingCart.totalPrice);
 console.log("Number of Elements = " + shoppingCart.selectedProducts.length);
-console.log("Name of Elements = " + shoppingCart.selectedProducts.map(p => p.name));
+console.log("Name of Elements = " + shoppingCart.selectedProducts.map(p=>p.name));
 removeFromShoppingCart(2);
 console.log("Step 4");
 console.log("Total Price = " + shoppingCart.totalPrice);
 console.log("Number of Elements = " + shoppingCart.selectedProducts.length);
-console.log("Name of Elements = " + shoppingCart.selectedProducts.map(p => p.name));
+console.log("Name of Elements = " + shoppingCart.selectedProducts.map(p=>p.name));
 shop();
 console.log("Step 5");
 console.log("Total Price = " + shoppingCart.totalPrice);
 console.log("Number of Elements = " + shoppingCart.selectedProducts.length);
-console.log("Name of Elements = " + shoppingCart.selectedProducts.map(p => p.name));
+console.log("Name of Elements = " + shoppingCart.selectedProducts.map(p=>p.name));

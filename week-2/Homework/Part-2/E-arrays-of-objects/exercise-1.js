@@ -25,11 +25,11 @@ WRITE YOUR CODE BELOW
 */
 
 
-let persons = [person1, person2, person3]// Complete here
+let persons = [person1, person2, person3];// Complete here
 
-let personNames = persons.map(person => person.name)// Complete here
+let personNames = persons.map((e)=> e.name); // Complete here
 
-let personsYoungerThan28YearsOld = persons.filter((person) => person.age < 28)// Complete here
+let personsYoungerThan28YearsOld = persons.filter((e)=> e.age < 28).map((e)=>e);// Complete here
 
 
 /*

@@ -1,105 +1,60 @@
 // Write your code here
-const images = []
-const previousBtn = document.getElementById("previousBtn")
-const nextBtn = document.querySelector('#nextBtn')
-const autoPreviousBtn = document.querySelector('#autoPreviousBtn')
-const autoNextBtn = document.querySelector("#autoNextBtn")
-const stopBtn = document.querySelector("#stopBtn")
-let intervalId = 0
+const img1 = "https://images.unsplash.com/photo-1620766567920-ccb8cc5c8a87?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=435&q=80";
+const img2 = "https://images.unsplash.com/photo-1583339835381-8f89b73c346e?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=354&q=80";
+const img3 = "https://images.unsplash.com/photo-1641490238587-6b35678fb28b?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=387&q=80";
+const img4 = "https://images.unsplash.com/photo-1599311979600-a629977414ff?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=387&q=80";
+const img5 = "https://images.unsplash.com/photo-1647717830880-97983506c007?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=387&q=80";
 
-//fetch image data and create a images array
-let counter = 0
-const apiCallInterval = setInterval(() => {
-    counter = counter + 1
-    fetch("https://source.unsplash.com/random")
-        .then(r => {
-            const imageUrl = r.url
-            images.push(imageUrl)
-        })
-    stopApiCall(counter)
-}, 1000)
+const imagesOfCoolAnimals = [img1, img2, img3, img4, img5];
 
-const stopApiCall = (counter) => {
-    if (counter >= 10) {
-        clearInterval(apiCallInterval)
-    }
+let imgIndex = 0;
+let intervalVar;
+let delayInterval = 2000;
+
+const autoBackBtn = document.getElementById("auto-back-btn");
+const backBtn = document.getElementById("back-btn");
+const stopBtn = document.getElementById("stop-btn");
+const forwardBtn = document.getElementById("forward-btn");
+const autoForwardBtn = document.getElementById("auto-forward-btn");
+const selectImage = document.getElementById("random-image");
+
+autoBackBtn.addEventListener('click', autoBackEvent);
+backBtn.addEventListener('click', backEvent);
+stopBtn.addEventListener('click', stopEvent);
+forwardBtn.addEventListener('click', forwardEvent);
+autoForwardBtn.addEventListener('click', autoForwardEvent);
+
+function showImage() {
+  selectImage.src = imagesOfCoolAnimals[imgIndex];
 }
 
-
-
-let image = document.querySelector('#carousel-image')
-
-const findIndex = () => {
-    let currentIndex = images.findIndex((url) => url === image.src)
-    return currentIndex
-
+function backEvent() {
+  imgIndex = imgIndex == 0 ? imagesOfCoolAnimals.length - 1 : imgIndex - 1;
+  showImage();
 }
 
-
-const showImage = (index) => {
-    image.src = images[index]
-}
-const setPreviousIndex = (index) => {
-    if (index < 10 && index > 0) {
-        index = index - 1
-    } else if (index === 0) {
-        index = 9
-    } else {
-        index = 0
-    }
-    return index
+function forwardEvent() {
+  imgIndex = imgIndex == imagesOfCoolAnimals.length - 1 ? 0 : imgIndex + 1;
+  showImage();
 }
 
-const setNextIndex = (index) => {
-    if (index === 9) {
-        index = 0
-    } else {
-        index = index + 1
-    }
-    return index
+function autoBackEvent() {
+  resetInt(backEvent);
 }
 
-previousBtn.addEventListener('click', (e) => {
-
-    let newIndex = setPreviousIndex(findIndex())
-    showImage(newIndex)
-})
-
-
-nextBtn.addEventListener('click', (e) => {
-    let newIndex = setNextIndex(findIndex())
-    showImage(newIndex)
-})
-
-
-const autoPlayImage = (direction) => {
-    if (direction === 'previous') {
-        showImage(setPreviousIndex(findIndex()))
-    } else {
-        showImage(setNextIndex(findIndex()))
-    }
-
+function autoForwardEvent() {
+  resetInt(forwardEvent);
 }
 
-const intervalImage = (direction) => {
-    intervalId = setInterval(() => {
-        autoPlayImage(direction)
-    }, 1 * 1000)
+function stopEvent() {
+  resetInt();
 }
 
+function resetInt(fnc) {
+  if (intervalVar) clearInterval(intervalVar);
+  if (typeof fnc === "function") {
+    intervalVar = setInterval(fnc, delayInterval);
+  }
+}
 
-
-autoPreviousBtn.addEventListener('click', () => {
-    clearInterval(intervalId)
-    intervalImage('previous')
-})
-
-
-autoNextBtn.addEventListener('click', () => {
-    clearInterval(intervalId)
-    intervalImage('next')
-})
-
-stopBtn.addEventListener('click', () => {
-    clearInterval(intervalId)
-})
+showImage();
