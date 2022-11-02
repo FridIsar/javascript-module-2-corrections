@@ -4,28 +4,31 @@ Task 1
 Write JavaScript below that logs:
     1. all the "p" element nodes of the document,
     --> should log a list of nodes with a length of 6
-
+    
     2. the first div element node
     --> should log the ".site-header" node
-
+    
     3. the element with id "jumbotron-text"
     --> should log the "#jumbotron-text" node
-
+    
     4. all the "p" elements of contained inside  the .primary-content element node
     --> should log a list of nodes with a length of 3
+    
+    */
+   
+ const pNodes = document.querySelectorAll("p");
+   if(pNodes.length === 6){
+      console.log(pNodes)
+   }
 
-*/
+ const firstDiv = document.querySelector(".site-header");
+ console.log(firstDiv);
 
-const listElementsP = document.querySelectorAll('p');
-console.log(listElementsP);
-const firstDiv = document.querySelector('div');
-console.log(firstDiv);
-const jumbotron = document.querySelector('#jumbotron-text');
-console.log(jumbotron);
-const pInsidePrimaryContent = document.querySelectorAll('.primary-content p');
-console.log(pInsidePrimaryContent);
+ const jumboText = document.querySelector("#jumbotron-text")
+ console.log(jumboText);
 
-
+ const primaryElements = document.querySelectorAll(".primary-content p")
+ console.log(primaryElements)
 
 /*
 Task 2
@@ -33,10 +36,11 @@ Task 2
 
 When a user clicks the 'ALERT' button, an alert box should pop up with the text "Thanks for visiting Bikes for Refugees!"
 */
-
-const alertButton = document.querySelector('#alertBtn');
-alertButton.addEventListener('click', () => {alert("Thanks for visiting Bikes for Refugees!")});
-
+const myButton = document.querySelector("#alertBtn")
+myButton.addEventListener("click", alertBell);
+function alertBell(){
+    alert("Thanks for visiting Bikes for Refugees!")
+}
 
 /*
 Task 3
@@ -45,10 +49,25 @@ Task 3
 Write JavaScript below that changes the background colour of the page when the 'Change colour' button is clicked.
 */
 
-// const changeBackgroundColor = document.querySelector("#bgrChangeBtn");
-// changeBackgroundColor.addEventListener('click',() => {document.body.style.backgroundColor = 'lightblue'});
+// Colors array
+let colors = ["red","blue","green","grey","orange","white"]
 
+//get Button
 
+const colorButton = document.querySelector("#bgrChangeBtn")
+
+//adding Event Listner
+
+colorButton.addEventListener("click", (e) =>{
+ // adding randomizer
+ const randomColors = colors[Math.floor(Math.random() * colors.length)]
+
+//get the body
+const Wholebody = document.querySelector("body")
+
+Wholebody.style.backgroundColor = randomColors;
+
+})
 
 /*
 Task 4
@@ -56,16 +75,26 @@ Task 4
 
 When a user clicks the ‘Add some text’ button, a new paragraph should be added inside the section that says “LEARN MORE”
 */
-const addTextButton = document.querySelector("#addTextBtn");
-addTextButton.addEventListener('click', createNewP);
 
-function createNewP(text){ // TODO the text variable should contain the content of the text input field below
-    const newParagraph = document.createElement('p');
-    newParagraph.innerText = text;
+//get button
+const textButton = document.querySelector("#addTextBtn");
 
-    const addParagraph = document.getElementById("mainArticles");
-    addParagraph.appendChild(newParagraph);
-}
+//adding event listner
+textButton.addEventListener("click", (e) => {
+    e.preventDefault()
+
+    //selecting the below learn more div
+
+    const paraText = document.querySelector("#mainArticles");
+    //creating Elements
+    const addingPara = document.createElement("p");
+    //adding text inside
+    addingPara.innerText = "LEARN MORE"
+    //appending chind
+    paraText.appendChild(addingPara);
+})
+
+
 
 /*
 Task 5
@@ -73,62 +102,60 @@ Task 5
 
 When the 'Larger links!' button is clicked, the text of all links on the page should increase.
 */
+ 
+//get button
+const largerLinkButton = document.querySelector("#largerLinksBtn");
 
-const largerLinksButton = document.querySelector('#largerLinksBtn');
-largerLinksButton.addEventListener('click',  biggerLinks);
+// adding eventlistner
 
+largerLinkButton.addEventListener("click", () => {
 
-function biggerLinks(){
-    debugger;
     const allLinks = document.querySelectorAll("a");
-    allLinks.forEach(el => el.style.fontSize = "x-large");
-};
-
+    //adding for loop
+    for(let i = 0; i < allLinks.length; i++){
+        allLinks[i].style.fontSize = "larger";
+    }
+})
 /*
 Task 6
 ======
-
 Using the same function in Task 4,
 When the 'Add' button is clicked, get the text inside the input field and create a new paragraph in the "LEARN MORE" section
 Also clear the text inside the input field
 */
-
-const buttonAdd = document.querySelector('#addArticleBtn');
-buttonAdd.addEventListener('click', getText);
-
-function getText(){
-    const inputField = document.querySelector(".form-control").value;
-    createNewP(inputField);
-    console.log(inputField.length);
-    if (inputField.length > 0){
-        document.querySelector(".form-control").value = " ";
-    }
-
-}
-
+    //get button
+    const addbutton = document.querySelector("#addArticleBtn")
+    //adding evenListner
+     addbutton.addEventListener("click", () => {
+        //creating P element
+      const userPar= document.createElement("p"); 
+      //selecting input feild
+      const parNew = document.querySelector(".form-control").value;  
+      //assingning input feild text to P elements
+      userPar.innerHTML = parNew;
+      // That's where we want to drop the paragraph 
+      const area = document.querySelector("#mainArticles");
+      //Appending Child
+      area.appendChild(userPar);
+     }) // TODO the text input field is not being cleared
 /*
 Task 7
 ======
-
 Create an array of 5 different colors.
 Using the same function in Task 3, every time the 'Change colour' button is clicked, the background color will be changed with the next color in the array.
 The next color when you are in the last color of the array will be the first color again.
 */
 
-const fiveColors = ["blue", "green", "red", "pink", "lightblue"];
-let color = "";
-let countColor = 0;
+ //get Button
 
-function selectColor(fiveColors){
+ const newColorButton = document.querySelector("#bgrChangeBtn")
+ let i = 0
 
-    color = fiveColors[countColor]
-    countColor++;
-    if (countColor == fiveColors.length) {
-        countColor = 0;
-    }
+ //adding Event Listner
 
-    return color
-}
-
-const changeBackgroundColor = document.querySelector("#bgrChangeBtn");
-changeBackgroundColor.addEventListener('click',() => {document.body.style.backgroundColor = selectColor(fiveColors)}); // TODO the code is good but the wrong variable was entered. it's important to test the code before pushing
+ newColorButton.addEventListener("click", (e) =>{
+    const newColors = ["red", "pink", "blue", "green", "orange"];
+    i= i < newColors.length ? ++i : 0
+    document.body.style.background = newColors[i];
+    })
+     
