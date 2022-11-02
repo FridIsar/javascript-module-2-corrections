@@ -5,6 +5,7 @@ can describe with a JavaScript object
 
 Assign each of them to a separate variable
 
+
 For example:
 var car = {
     brand: "Seat",
@@ -15,14 +16,4 @@ var car = {
 };
 
 */
-
-const phone ={
-    brand: "Apple",
-    Name: "iPhone 14",
-    model: 2022,
-    color: "Purple",
-    version: "IOS 16",
-    storage: "128 GB",
-    price: "1400 euro"
-}
 

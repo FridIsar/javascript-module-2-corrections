@@ -25,15 +25,11 @@ WRITE YOUR CODE BELOW
 */
 
 
-let persons = [
-    person1,
-    person2,
-    person3
-] // Complete here
+let persons = // Complete here
 
-let personNames = persons.map((e) => e.name )                                          // Complete here
+let personNames = // Complete here
 
-let personsYoungerThan28YearsOld = persons.filter((e) => e.age < 28 )             // Complete here
+let personsYoungerThan28YearsOld = // Complete here
 
 
 /*

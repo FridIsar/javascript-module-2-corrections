@@ -39,12 +39,6 @@ var writers = [
   },
 ];
 
-function challengeWriters(people){
-  const introduction = people.map((e) => `Hi, my name is ${e.firstName} ${e.lastName}. I am ${e.age} years old, and work as a ${e.occupation}.`);
- return introduction
-}
- 
-console.log(challengeWriters(writers));
 /*
 If you want an extra challenge, only `console.log()` the writers that are alive.
 */

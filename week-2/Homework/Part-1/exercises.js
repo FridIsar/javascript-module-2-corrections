@@ -13,28 +13,9 @@
  *      .....
  * </div>
  */
-
-
 function exerciseOne(arrayOfPeople) {
   let content = document.querySelector("#content");
-
-  const createH1 = (content) => {
-    const h1 = document.createElement('h1');
-    h1.innerHTML = content;
-    return h1;
-  };
-  const h1Elements = arrayOfPeople.map((person) => createH1(person.name));
-   h1Elements.forEach((node) => content.appendChild(node));
-
-   const createH2 = (e) => {
-    const h2 = document.createElement("h2");
-    h2.innerHTML = e;
-    return h2;
-   };
-   const h2Elements = arrayOfPeople.map((person) => createH2(person.job));
-   h2Elements.forEach((node) => content.appendChild(node));
 }
-
 
 /**
  *
@@ -44,22 +25,7 @@ function exerciseOne(arrayOfPeople) {
  *
  */
 function exerciseTwo(shopping) {
-  //selecting div id
-  let content = document.querySelector("#content");
-  // creating ul element
-  const unorderedList = document.createElement("ul")
-  // appending ul element to the content div
-  const ul= content.appendChild(unorderedList)
-  // creating arrow function for creating li 
-  const createLi = (list) => {
-    const li = document.createElement("li");
-    li.innerHTML = list;
-    return li;
-  };
-  // using map function 
-  const liElements = shopping.map((grocery) => createLi(grocery));
-  // Again apending each node to the ul 
-  liElements.forEach((node) =>ul.appendChild(node))
+  //Write your code in here
 }
 
 /**
@@ -92,40 +58,7 @@ function exerciseTwo(shopping) {
     The end result should look something like this: https://hyf-js2-week1-makeme-ex1-demo.herokuapp.com/
 **/
 function exerciseThree(books) {
-  let h1 = document.createElement("h1");
-  h1.textContent = "BookList";
-  let content = document.querySelector("#content");
-  let ul = document.createElement("ul");
-  content.appendChild(h1);
-  content.appendChild(ul);
-
-  let img1 = "./images/download.jpg";
-  let img2 = "./images/download (1).jpg";
-  let img3 = "./images/download (2).jpg";
-  let imgs = [img1, img2, img3];
-
-  ul.style.listStyle = "none";
-  ul.style.display = "flex";
-  h1.style.marginLeft = "50px";
-  h1.style.marginBottom = "-20px";
-
-  books.forEach((book, index) => {
-    let p = document.createElement("p");
-    let li = document.createElement("li");
-
-    ul.appendChild(li);
-    li.appendChild(p);
-
-    p.textContent = `${book.title} - ${book.author}`;
-    li.style.backgroundColor = book.alreadyRead ? "green" : "red";
-
-    li.style.margin = "15px";
-    li.style.padding = "10px";
-    li.style.minWidth = "350px";
-    let img = document.createElement("img");
-    img.src = imgs[index];
-    li.appendChild(img);
-  });
+  //Write your code in here
 }
 
 //

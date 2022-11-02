@@ -50,40 +50,15 @@ var shoppingCart = {
   selectedProducts: []
 };
 
-function addToShoppingCart(id) {
-  let product = products.find(product => product.id === id)
-
-  if (product) {
-    if (product.stock > 1) {
-      shoppingCart.totalPrice = shoppingCart.totalPrice + product.price
-      shoppingCart.selectedProducts.push(product)
-
-    } else {
-      alert("No more stock. Can't add to shopping cart.")
-    }
-  }
-
+function addToShoppingCart(id){
 
 }
 
-function removeFromShoppingCart(id) {
-  let product = products.find(product => product.id === id)
-  let index = shoppingCart.selectedProducts.findIndex(product => product === product)
-  shoppingCart.selectedProducts.splice(index, 1)
-  //another solution to delete the item here
-  //products.filter(product=>product.id !==id)
-  shoppingCart.totalPrice = shoppingCart.totalPrice - product.price
-
+function removeFromShoppingCart(id){
 
 }
 
-function shop() {
-  shoppingCart.totalPrice = 0
-  shoppingCart.selectedProducts.forEach(product => {
-    product.stock = product.stock - 1
-  })
-  shoppingCart.selectedProducts = []
-
+function shop(){
 
 }
 

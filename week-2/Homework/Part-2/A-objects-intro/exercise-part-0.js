@@ -7,11 +7,7 @@ Try to think of as many properties as you can!
 */
 
 let laptop = {
-    brand: "HP Spectre 360",
+    brand: "Lenovo",
     screenSize: 13,
     isTouchscreen: true,
-    Ram:"16GB",
-    Storage:"1TB",
-    Drive:"SDD",
-    360: true
   };
